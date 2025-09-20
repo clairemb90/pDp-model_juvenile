@@ -9,7 +9,7 @@ mfr_o=zeros(num_odors,1);
 mfrs_o=zeros(num_odors,1);
 mfri_o=zeros(num_odors,1);
 for oo=1:num_odors
-    times(:,oo)=[1000/dt+3000/dt*(oo-1);2000/dt+3000/dt*(oo-1)]; %2500
+    times(:,oo)=[1000/dt+3000/dt*(oo-1);2500/dt+3000/dt*(oo-1)]; 
     times_s(:,oo)=[1+3000/dt*(oo-1);1000/dt+3000/dt*(oo-1)];
     times_1(:,oo)=[1000+3000*(oo-1);2500+3000*(oo-1)];
 end
