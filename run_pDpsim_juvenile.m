@@ -1,7 +1,7 @@
 tit=1;
 
 twoorthree=1; %'network architecture: one inhibitory population (1) or two inhibitory populations, one feedback and one feedworward (2) ');
-randortuned=input('network type: random (1), E-I assemblies (2)');
+randortuned=input('network type: random (1), E-I assemblies (2), E assemblies (3)');
 analys=input('analysis: yes (1) or no (2) ');
 
 pagexls=1; 
@@ -10,6 +10,9 @@ if randortuned==1
     ext1='_small_tboth';
 elseif randortuned==2
     ext='_small_tboth';
+elseif randortuned==3
+    ext='_small_tboth';
+    ext1='_small';
 else 
     disp('network not available')
 end
@@ -35,8 +38,12 @@ for mat=1:tot_mat %can be changed if simulation of only subsets of networks
    
     if randortuned==1 
         load(strcat(connec{mat},ext)),load(strcat(connec{mat},ext1),'Ee','EnsE')
-    else         
+    elseif randortuned==2         
         load(strcat(connec{mat},ext))
+    elseif randortuned==3
+        load(strcat(connec{mat},ext))
+        load(strcat(connec{mat},ext1),'w_ie')
+        w_ie=1.65*w_ie;
     end
     
     Nexc=length(w_ee); 
@@ -196,7 +203,7 @@ for mat=1:tot_mat %can be changed if simulation of only subsets of networks
         %cot_mat(mat,:)=res_cot;
     end
     tit=tit+1
-    clearvars -except mat obs_mat gE_save gI_save V_save twoorthree tit randortuned analys pagexls ext ext1 fact ods num_odors r_ob tot_mat PIN ACT ACT_I param connec tot
+    clearvars -except mat obs_mat gE_save gI_save V_save twoorthree tit randortuned analys pagexls ext ext1 fact ods num_odors trials r_ob tot_mat PIN ACT ACT_I param connec tot
     %save()
 end
 
